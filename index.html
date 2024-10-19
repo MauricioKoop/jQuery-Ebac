@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Seja bem vindo ao nosso e-commerce com Javascript</h1>
+            <p>Encontre aqui o seu produto</p>
+            <button>Compre Agora</button>
+        </section>
+
+        <section class="products">
+            <h2>Produtos em Destaque</h2>
+            <div class="product-grid">
+                <!-- Aqui serão inseridos os produtos via Javascript -->
+            </div>
+        </section>
+
+        <section class="cart">
+            <h2>Carrinho de compras</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aqui serão inseridos os produtos via Javascript -->
+                </tbody>
+            </table>
+            <p>Total: <span id="Total">R$0.00</span></p>
+            <button id="checkout">Pagar</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 EBAC Ecommerce V1</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
