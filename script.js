@@ -16,6 +16,7 @@ function renderProducts(){
     let productGrid = document.querySelector('.product-grid');
     productGrid.innerHTML = '';
     products.forEach((product) => {
+        let initialPrice = product.price;
         let productDiv = document.createElement('div');
         productDiv.className = 'product';
         productDiv.innerHTML = `
@@ -26,30 +27,35 @@ function renderProducts(){
         `;
         productGrid.appendChild(productDiv);
         productDiv.querySelector('button').addEventListener('click', () => {
-            addTocart(product);
+            addTocart(product, initialPrice);
         })
     })
 }
 
-function addTocart(currentProduct) {
+function addTocart(currentProduct, initialPrice) {
     let product = products.find((product) => product.id === currentProduct.id);
 
     if (cart.length === 0) {
+        product.amount = 1;
+        product.price = initialPrice;
         cart.push(product);
     }else{
-        let equalProduct = cart.find((product) => product.id === currentProduct.id);
-        if(equalProduct != undefined){
+        let equalProduct = cart.find((product) => {
+            return product.id === currentProduct.id
+        });
+        if(equalProduct){
             equalProduct.amount += 1;
+            equalProduct.price += equalProduct.price;
             cart.push(equalProduct);
         }else{
             cart.push(product);
         }
     }
 
-    renderCart();
+    renderCart(initialPrice);
 }
 
-function renderCart() {
+function renderCart(initialPrice) {
     let cartTable = document.querySelector('.cart table tbody');
     cartTable.innerHTML = '';
 
@@ -60,11 +66,12 @@ function renderCart() {
         cartRow.innerHTML = `
             <td>${product.name}</td>
             <td>${product.amount}</td>
-            <td>${product.price}</td>
+            <td>${initialPrice}</td>
             <td>${product.price}</td>
         `;
         cartTable.appendChild(cartRow);
     });
+
     updateTotal();
 }
 
