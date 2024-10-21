@@ -1,13 +1,13 @@
 let products = [
-    {id: 1, name: 'Curso 1', price: 10.99, amount: 1, image: 'img/product1.jpg'},
-    {id: 2, name: 'Curso 2', price: 20.99, amount: 1, image: 'img/product1.jpg'},
-    {id: 3, name: 'Curso 3', price: 30.99, amount: 1, image: 'img/product1.jpg'},
-    {id: 4, name: 'Curso 4', price: 40.99, amount: 1, image: 'img/product1.jpg'},
-    {id: 5, name: 'Curso 5', price: 50.99, amount: 1, image: 'img/product1.jpg'},
-    {id: 6, name: 'Curso 6', price: 60.99, amount: 1, image: 'img/product1.jpg'},
-    {id: 7, name: 'Curso 7', price: 70.99, amount: 1, image: 'img/product1.jpg'},
-    {id: 8, name: 'Curso 8', price: 80.99, amount: 1, image: 'img/product1.jpg'},
-    {id: 9, name: 'Curso 9', price: 90.99, amount: 1, image: 'img/product1.jpg'}
+    {id: 1, name: 'Curso 1', price: 10.99, sumPrice: 10.99, amount: 1, image: 'img/product1.jpg'},
+    {id: 2, name: 'Curso 2', price: 20.99, sumPrice: 20.99, amount: 1, image: 'img/product1.jpg'},
+    {id: 3, name: 'Curso 3', price: 30.99, sumPrice: 30.99, amount: 1, image: 'img/product1.jpg'},
+    {id: 4, name: 'Curso 4', price: 40.99, sumPrice: 40.99, amount: 1, image: 'img/product1.jpg'},
+    {id: 5, name: 'Curso 5', price: 50.99, sumPrice: 50.99, amount: 1, image: 'img/product1.jpg'},
+    {id: 6, name: 'Curso 6', price: 60.99, sumPrice: 60.99, amount: 1, image: 'img/product1.jpg'},
+    {id: 7, name: 'Curso 7', price: 70.99, sumPrice: 70.99, amount: 1, image: 'img/product1.jpg'},
+    {id: 8, name: 'Curso 8', price: 80.99, sumPrice: 80.99, amount: 1, image: 'img/product1.jpg'},
+    {id: 9, name: 'Curso 9', price: 90.99, sumPrice: 90.99, amount: 1, image: 'img/product1.jpg'}
 ];
 
 let cart = [];
@@ -16,7 +16,6 @@ function renderProducts(){
     let productGrid = document.querySelector('.product-grid');
     productGrid.innerHTML = '';
     products.forEach((product) => {
-        let initialPrice = product.price;
         let productDiv = document.createElement('div');
         productDiv.className = 'product';
         productDiv.innerHTML = `
@@ -27,6 +26,7 @@ function renderProducts(){
         `;
         productGrid.appendChild(productDiv);
         productDiv.querySelector('button').addEventListener('click', () => {
+            let initialPrice = product.price;
             addTocart(product, initialPrice);
         })
     })
@@ -45,7 +45,7 @@ function addTocart(currentProduct, initialPrice) {
         });
         if(equalProduct){
             equalProduct.amount += 1;
-            equalProduct.price += equalProduct.price;
+            equalProduct.sumPrice += equalProduct.sumPrice;
             cart.push(equalProduct);
         }else{
             cart.push(product);
@@ -66,17 +66,18 @@ function renderCart(initialPrice) {
         cartRow.innerHTML = `
             <td>${product.name}</td>
             <td>${product.amount}</td>
-            <td>${initialPrice}</td>
             <td>${product.price}</td>
+            <td>${product.sumPrice}</td>
         `;
         cartTable.appendChild(cartRow);
+        console.log(product);
     });
 
     updateTotal(cartFiltered);
 }
 
 function updateTotal(cartFiltered){
-    let total = cartFiltered.reduce((acc, product) => acc + product.price, 0);
+    let total = cartFiltered.reduce((acc, product) => acc + product.sumPrice, 0);
     document.getElementById('total').textContent = `$${total.toFixed(2)}`;
 }
 
