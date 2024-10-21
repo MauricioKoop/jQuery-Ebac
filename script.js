@@ -72,11 +72,11 @@ function renderCart(initialPrice) {
         cartTable.appendChild(cartRow);
     });
 
-    updateTotal();
+    updateTotal(cartFiltered);
 }
 
-function updateTotal(){
-    let total = cart.reduce((acc, product) => acc + product.price, 0);
+function updateTotal(cartFiltered){
+    let total = cartFiltered.reduce((acc, product) => acc + product.price, 0);
     document.getElementById('total').textContent = `$${total.toFixed(2)}`;
 }
 
