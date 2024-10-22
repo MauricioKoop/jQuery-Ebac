@@ -83,11 +83,21 @@ function updateTotal(cartFiltered){
 document.getElementById('checkout').addEventListener('click', () => {
     if(cart.length === 0)
     {
-        alert('Seu carrinho está vazio');
+        swal({
+            title: "Tentativa de compra",
+            text: "Seu Carrinho está vazio",
+            icon: "info",
+            button: "fechar"
+        })
     }else{
         cart = [];
         renderCart();
-        alert('Pedido realizado com sucesso');
+        swal({
+            title: "Compra Realizada",
+            text: "Pedido realizado com sucesso",
+            icon: "success",
+            button: "fechar"
+        })
     }
 })
 
