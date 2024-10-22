@@ -70,7 +70,6 @@ function renderCart(initialPrice) {
             <td>${product.sumPrice}</td>
         `;
         cartTable.appendChild(cartRow);
-        console.log(product);
     });
 
     updateTotal(cartFiltered);
